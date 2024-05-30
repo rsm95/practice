@@ -1,0 +1,296 @@
+1
+00:00:01,060 --> 00:00:07,570
+So now that we've learned about the time travel feature, let's talk about the retention time.
+
+2
+00:00:07,570 --> 00:00:12,250
+That means the time we can travel back into the past.
+
+3
+00:00:12,280 --> 00:00:13,600
+Here in Snowflake.
+
+4
+00:00:13,600 --> 00:00:17,350
+So this is depending on the edition you are using.
+
+5
+00:00:17,350 --> 00:00:24,880
+So if you are using the standard edition in Snowflake, you have the time travel capability for traveling
+
+6
+00:00:24,880 --> 00:00:28,540
+up to 24 hours back in the past.
+
+7
+00:00:28,570 --> 00:00:33,580
+So this is here for the standard edition for all of the other editions.
+
+8
+00:00:33,580 --> 00:00:41,470
+So starting with the Enterprise and Higher, we have this time travel feature available for up to 90
+
+9
+00:00:41,500 --> 00:00:42,280
+days.
+
+10
+00:00:42,640 --> 00:00:51,700
+But that does not mean now that we can always, for all objects by default, travel back for 90 days
+
+11
+00:00:51,730 --> 00:00:56,800
+because we have a so-called retention period.
+
+12
+00:00:56,800 --> 00:01:03,860
+So this is basically a property of our objects, for example, for a table.
+
+13
+00:01:03,860 --> 00:01:11,180
+And this is specifying for how much time we can travel back for this object.
+
+14
+00:01:11,180 --> 00:01:16,610
+So the default value here is usually set to one.
+
+15
+00:01:16,610 --> 00:01:27,020
+So if a table has this retention period property set to one, then we can travel back for 24 hours for
+
+16
+00:01:27,020 --> 00:01:28,130
+this table.
+
+17
+00:01:28,130 --> 00:01:36,350
+But in the at least enterprise and all of the other higher editions, we can change this retention period
+
+18
+00:01:36,350 --> 00:01:39,050
+value for up to 90 days.
+
+19
+00:01:39,620 --> 00:01:42,260
+So this is what we should know.
+
+20
+00:01:42,260 --> 00:01:49,400
+It's not really complicated and therefore, let's get hands on again and have a look into Snowflake,
+
+21
+00:01:49,400 --> 00:01:53,990
+how we can use and alter this retention period.
+
+22
+00:01:54,640 --> 00:02:01,090
+So let's first answer the question of how can we see this retention time property?
+
+23
+00:02:01,120 --> 00:02:04,760
+We can do this using the show tables command.
+
+24
+00:02:04,780 --> 00:02:13,570
+So this we can also filter using the like command and then see only the tables that have included in
+
+25
+00:02:13,570 --> 00:02:16,900
+their name these characters customers.
+
+26
+00:02:16,900 --> 00:02:21,940
+So in our case, we have two tables that fit this criterion.
+
+27
+00:02:21,940 --> 00:02:26,020
+So we have the customers and the customers wrong table.
+
+28
+00:02:26,020 --> 00:02:34,180
+And if we have a look in these properties, we find here this retention time property and this is exactly
+
+29
+00:02:34,180 --> 00:02:36,490
+this property that we are talking about.
+
+30
+00:02:36,490 --> 00:02:44,140
+So for both of these tables, as we have mentioned, these values are per default set to one.
+
+31
+00:02:44,290 --> 00:02:49,150
+So this is what we have learned also here in this lecture.
+
+32
+00:02:49,150 --> 00:02:54,970
+And that means that we can, for these two tables, travel back for one day.
+
+33
+00:02:54,980 --> 00:02:57,710
+That means for 24 hours.
+
+34
+00:02:57,710 --> 00:03:06,560
+So all changes that have occurred in the last 24 hours, we can travel back to and we can restore these
+
+35
+00:03:06,590 --> 00:03:12,560
+this data and how the data has looked here within this retention time period.
+
+36
+00:03:12,560 --> 00:03:21,050
+But now the question is how can we alter this value so we can do this using two methods?
+
+37
+00:03:21,050 --> 00:03:29,060
+So the first one would be if a table already exists, we can use the alter table command and then set
+
+38
+00:03:29,060 --> 00:03:34,340
+this property data retention time in days to a different value.
+
+39
+00:03:34,340 --> 00:03:41,000
+So for example, we could set this value to two, we execute this and then have a look at the tables
+
+40
+00:03:41,000 --> 00:03:41,660
+again.
+
+41
+00:03:41,990 --> 00:03:49,070
+And then we see that for this table that we have just altered here, this property, this is now set
+
+42
+00:03:49,070 --> 00:03:49,910
+to two.
+
+43
+00:03:50,000 --> 00:03:59,450
+The second method would be to, if we create this table, set this property to a certain value that
+
+44
+00:03:59,450 --> 00:04:06,560
+could be different from one, because as we said, the default is always that this value is set to one.
+
+45
+00:04:06,560 --> 00:04:16,100
+So if we create this table that is called read example retention time example, and we set this value
+
+46
+00:04:16,100 --> 00:04:18,410
+to three, let's have a look.
+
+47
+00:04:18,410 --> 00:04:23,060
+We can show the tables to see this table.
+
+48
+00:04:24,060 --> 00:04:30,990
+And in here we find this red example and this has a retention time of three.
+
+49
+00:04:31,440 --> 00:04:40,320
+So this is the second method of setting the retention time period if a table is not existing yet, but
+
+50
+00:04:40,320 --> 00:04:47,670
+we want to create it and then we can just pass here this property value while we create this table.
+
+51
+00:04:47,880 --> 00:04:57,690
+But now if we alter here this property to a value of zero, that would of course mean that we cannot
+
+52
+00:04:57,690 --> 00:05:00,120
+travel back in time at all.
+
+53
+00:05:00,120 --> 00:05:03,230
+We cannot use this time travel feature at all.
+
+54
+00:05:03,240 --> 00:05:11,250
+So now we have done this, and if we now drop this table, we can also not drop it because this time
+
+55
+00:05:11,250 --> 00:05:18,930
+travel period is set to zero and this dropping is also a component of the time travel.
+
+56
+00:05:18,930 --> 00:05:20,640
+So let's verify this.
+
+57
+00:05:20,670 --> 00:05:28,150
+If we drop this table and now we try to drop it, we get this error message that this table did not
+
+58
+00:05:28,180 --> 00:05:29,680
+exist or was purged.
+
+59
+00:05:29,710 --> 00:05:35,230
+That means that we cannot use this time travel at all for this table.
+
+60
+00:05:35,230 --> 00:05:42,180
+So this is just something that helps maybe in the understanding and that we should be aware of.
+
+61
+00:05:42,190 --> 00:05:52,960
+So to summarize things here, this is the retention time in days property that is set to one per default.
+
+62
+00:05:52,960 --> 00:06:01,330
+But we can alter this in our tables using here this alter command to just set this value to a different
+
+63
+00:06:01,330 --> 00:06:02,230
+value.
+
+64
+00:06:02,230 --> 00:06:07,750
+And then also we can here pass this property value.
+
+65
+00:06:07,780 --> 00:06:11,740
+If we create a table and set it to a certain value.
+
+66
+00:06:11,740 --> 00:06:18,850
+And this is specifying of how many days we can use the time travel feature.
+
+67
+00:06:18,850 --> 00:06:27,340
+But now the question might arise if we have the capability to travel back in time for 90 days, why
+
+68
+00:06:27,340 --> 00:06:30,130
+should we set this not to 90 days?
+
+69
+00:06:30,160 --> 00:06:32,860
+And why is the default then only one?
+
+70
+00:06:32,860 --> 00:06:38,320
+And the answer to this is that there is an indirect cost involved.
+
+71
+00:06:38,320 --> 00:06:46,990
+That means that we have a little bit more storage used because this time travel needs to be stored as
+
+72
+00:06:46,990 --> 00:06:49,510
+well and we have to pay for the storage.
+
+73
+00:06:49,510 --> 00:06:58,150
+So therefore in the next lecture, let's have a closer look on these costs that are related to the additional
+
+74
+00:06:58,150 --> 00:07:00,790
+storage through time travel.
+
